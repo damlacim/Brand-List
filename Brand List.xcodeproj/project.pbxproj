@@ -16,6 +16,7 @@
 		D00F173727E8BC9500F7BC9C /* Brand_ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F173627E8BC9500F7BC9C /* Brand_ListTests.swift */; };
 		D00F174127E8BC9500F7BC9C /* Brand_ListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F174027E8BC9500F7BC9C /* Brand_ListUITests.swift */; };
 		D00F174327E8BC9500F7BC9C /* Brand_ListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00F174227E8BC9500F7BC9C /* Brand_ListUITestsLaunchTests.swift */; };
+		D0EBBFBC27EA16E10049EAB7 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBBFBB27EA16E10049EAB7 /* DescriptionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		D00F173C27E8BC9500F7BC9C /* Brand ListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Brand ListUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D00F174027E8BC9500F7BC9C /* Brand_ListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand_ListUITests.swift; sourceTree = "<group>"; };
 		D00F174227E8BC9500F7BC9C /* Brand_ListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand_ListUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D0EBBFBB27EA16E10049EAB7 /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				D00F172827E8BC9500F7BC9C /* Assets.xcassets */,
 				D00F172A27E8BC9500F7BC9C /* LaunchScreen.storyboard */,
 				D00F172D27E8BC9500F7BC9C /* Info.plist */,
+				D0EBBFBB27EA16E10049EAB7 /* DescriptionViewController.swift */,
 			);
 			path = "Brand List";
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D00F172427E8BC9400F7BC9C /* ViewController.swift in Sources */,
+				D0EBBFBC27EA16E10049EAB7 /* DescriptionViewController.swift in Sources */,
 				D00F172027E8BC9400F7BC9C /* AppDelegate.swift in Sources */,
 				D00F172227E8BC9400F7BC9C /* SceneDelegate.swift in Sources */,
 			);

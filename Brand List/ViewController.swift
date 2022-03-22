@@ -19,17 +19,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.delegate = self
         tableView.dataSource = self
-        
- 
+    
         
         //Edit Button
         let editButton = editButtonItem
         self.navigationItem.leftBarButtonItem = editButton
         
+        loadData()
+       
+        
     }
+   
+    
     
     
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
+        
+        if tableView.isEditing == true {
+            return
+        }
+    
         
         let alertController = UIAlertController(title: "Add Brand", message: "Enter the brand you want to add", preferredStyle: .alert) //alert oluşturdum
         
@@ -50,6 +59,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alertController.addAction(actionCancel)
         self.present(alertController, animated: true, completion: nil) // alert'i kullanıcıya göster
         
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,11 +75,42 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToDescription", sender: self)
+    }
   
     func addBrand(newBrand: String) {
         dataSource.insert(newBrand, at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .left)
+        saveData()
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            dataSource.remove(at: indexPath.row) //silme işlemi yapıldığında dataSource'dan sil
+            tableView.deleteRows(at: [indexPath], with: .left) //tableview'dan sil
+            saveData()
+        }
+        
+    }
+    
+    func saveData() {
+        UserDefaults.standard.set(dataSource, forKey: "brand")
+    }
+    
+    func loadData() {
+        if let loadData: [String] = UserDefaults.standard.value(forKey: "brand") as? [String] {
+            dataSource = loadData
+            tableView.reloadData()
+        }
     }
 
 
