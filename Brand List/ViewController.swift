@@ -12,6 +12,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     
     var dataSource = ["Apple","Xiaomi","Samsung"]
+    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
         return cell
         
+    }
+    @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
+        addBrand()
+    }
+    
+    func addBrand() {
+        let newBrand: String = "\(count). New Brand"
+        count += 1
+        dataSource.append(newBrand)
+        let indexPath = IndexPath(row: dataSource.count-1, section: 0)
+        tableView.insertRows(at: [indexPath], with: .left)
     }
 
 
