@@ -19,22 +19,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.delegate = self
         tableView.dataSource = self
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
-        cell.textLabel?.text = dataSource[indexPath.row]
-        cell.textLabel?.textColor = UIColor.black
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
-        return cell
+        
+ 
+        
+        //Edit Button
+        let editButton = editButtonItem
+        self.navigationItem.leftBarButtonItem = editButton
         
     }
+    
+    
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
         
         let alertController = UIAlertController(title: "Add Brand", message: "Enter the brand you want to add", preferredStyle: .alert) //alert oluşturdum
@@ -50,21 +44,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.addBrand(newBrand: textFieldName.text!)
         })
         
-        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil) //iptal butonu
         
-        alertController.addAction(actionAdd)
+        alertController.addAction(actionAdd) //alert'e eklediğim actionları belirtiyorum
         alertController.addAction(actionCancel)
-        self.present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil) // alert'i kullanıcıya göster
         
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSource.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
+        cell.textLabel?.text = dataSource[indexPath.row]
+        cell.textLabel?.textColor = UIColor.black
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
+        return cell
+    }
+  
     func addBrand(newBrand: String) {
-        //let newBrand: String = "\(count). New Brand"
-        //count += 1
         dataSource.insert(newBrand, at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .left)
-       
     }
 
 
