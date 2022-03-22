@@ -36,15 +36,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
-        addBrand()
+        
+        let alertController = UIAlertController(title: "Add Brand", message: "Enter the brand you want to add", preferredStyle: .alert) //alert oluşturdum
+        
+        alertController.addTextField(configurationHandler: { brandNameText in //text field oluşturduk
+            brandNameText.placeholder = "Brand Name"
+        })
+        
+        //buton oluşturdum addBrand fonksiyonunun new brand'ini alert içinden aldığım text field'a eşitledim
+        
+        let actionAdd = UIAlertAction(title: "Add", style: .default, handler: { action in
+            let textFieldName = alertController.textFields![0] as UITextField
+            self.addBrand(newBrand: textFieldName.text!)
+        })
+        
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(actionAdd)
+        alertController.addAction(actionCancel)
+        self.present(alertController, animated: true, completion: nil)
+        
     }
     
-    func addBrand() {
-        let newBrand: String = "\(count). New Brand"
-        count += 1
-        dataSource.append(newBrand)
-        let indexPath = IndexPath(row: dataSource.count-1, section: 0)
+    func addBrand(newBrand: String) {
+        //let newBrand: String = "\(count). New Brand"
+        //count += 1
+        dataSource.insert(newBrand, at: 0)
+        let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .left)
+       
     }
 
 
