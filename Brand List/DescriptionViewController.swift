@@ -9,21 +9,31 @@ import UIKit
 
 class DescriptionViewController: UIViewController {
 
+    @IBOutlet weak var descriptionLabel: UITextView!
+    var descriptonText = ""
+    
+    var masterView: ViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        descriptionLabel.text = descriptonText
+    }
+    
+    func setDescription(text: String) {
+        descriptonText = text
+        if isViewLoaded {
+            descriptionLabel.text = descriptonText
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //bu ekrandan başka bir ekrana geçtiğimizde bu kod çalışır
+        masterView?.brandDescp = descriptionLabel.text
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
 
 }

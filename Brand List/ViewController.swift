@@ -11,8 +11,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var tableView: UITableView!
     
-    var dataSource = ["Apple","Xiaomi","Samsung"]
-    var count = 0
+    var dataSource: [String] = []
+    var dataSourceDescp: [String] = []
+    var selectedRow: Int = -1
+    var brandDescp: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +31,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
        
         
     }
-   
     
+    override func viewWillAppear(_ animated: Bool) {
+        //ekran her önümüze geldiğinde bu fonksiyon çalışacak
+        super.viewWillAppear(animated)
+        
+        if selectedRow == -1 {
+            return
+        }
+        if brandDescp == "" {
+            dataSourceDescp.remove(at: selectedRow)
+            dataSource.remove(at: selectedRow)
+        } else if brandDescp == dataSourceDescp[selectedRow] {
+            return
+        } else {
+            dataSourceDescp[selectedRow] = brandDescp
+        }
+        saveData()
+        tableView.reloadData()
+    }
+   
     
     
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
@@ -82,9 +102,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   
     func addBrand(newBrand: String) {
         dataSource.insert(newBrand, at: 0)
+        dataSourceDescp.insert("no data", at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .left)
         saveData()
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+        performSegue(withIdentifier: "goToDescription", sender: self)
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -96,6 +119,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if editingStyle == .delete {
             dataSource.remove(at: indexPath.row) //silme işlemi yapıldığında dataSource'dan sil
+            dataSourceDescp.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left) //tableview'dan sil
             saveData()
         }
@@ -104,13 +128,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func saveData() {
         UserDefaults.standard.set(dataSource, forKey: "brand")
+        UserDefaults.standard.set(dataSourceDescp, forKey: "description")
     }
     
     func loadData() {
         if let loadData: [String] = UserDefaults.standard.value(forKey: "brand") as? [String] {
             dataSource = loadData
-            tableView.reloadData()
         }
+        if let description: [String] = UserDefaults.standard.value(forKey: "description") as? [String] {
+            dataSourceDescp = description
+        }
+        tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let descriptionView: DescriptionViewController = segue.destination as! DescriptionViewController
+        selectedRow = tableView.indexPathForSelectedRow!.row
+        descriptionView.setDescription(text: dataSourceDescp[selectedRow])
+        descriptionView.masterView = self
     }
 
 

@@ -59,7 +59,7 @@
         <!--Description-->
         <scene sceneID="WsS-uk-VPo">
             <objects>
-                <viewController title="Description" id="JHu-EK-ea5" sceneMemberID="viewController">
+                <viewController title="Description" id="JHu-EK-ea5" customClass="DescriptionViewController" customModule="Brand_List" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Wq-b7-xr2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,6 +83,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JFd-zr-7Rs"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="WWm-Sq-veT" id="G9P-RS-csN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1a-EW-fuw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

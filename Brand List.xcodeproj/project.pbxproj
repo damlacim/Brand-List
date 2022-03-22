@@ -104,11 +104,11 @@
 				D00F171F27E8BC9400F7BC9C /* AppDelegate.swift */,
 				D00F172127E8BC9400F7BC9C /* SceneDelegate.swift */,
 				D00F172327E8BC9400F7BC9C /* ViewController.swift */,
+				D0EBBFBB27EA16E10049EAB7 /* DescriptionViewController.swift */,
 				D00F172527E8BC9400F7BC9C /* Main.storyboard */,
 				D00F172827E8BC9500F7BC9C /* Assets.xcassets */,
 				D00F172A27E8BC9500F7BC9C /* LaunchScreen.storyboard */,
 				D00F172D27E8BC9500F7BC9C /* Info.plist */,
-				D0EBBFBB27EA16E10049EAB7 /* DescriptionViewController.swift */,
 			);
 			path = "Brand List";
 			sourceTree = "<group>";
