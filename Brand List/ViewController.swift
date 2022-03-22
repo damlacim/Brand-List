@@ -28,8 +28,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.navigationItem.leftBarButtonItem = editButton
         
         loadData()
-       
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,8 +56,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if tableView.isEditing == true {
             return
         }
-    
-        
         let alertController = UIAlertController(title: "Add Brand", message: "Enter the brand you want to add", preferredStyle: .alert) //alert oluşturdum
         
         alertController.addTextField(configurationHandler: { brandNameText in //text field oluşturduk
@@ -74,7 +70,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
         
         let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil) //iptal butonu
-        
         alertController.addAction(actionAdd) //alert'e eklediğim actionları belirtiyorum
         alertController.addAction(actionCancel)
         self.present(alertController, animated: true, completion: nil) // alert'i kullanıcıya göster
